@@ -67,9 +67,16 @@ app.get('/:serveDate', function (req, res) {
   console.log(input + " was queried.");
   var theDate = new Date(input);
   var displayDate = Date.parse(theDate);
-  myDate.unix = theDate.getTime();
-  myDate.natural = toNatDate(theDate);
-  console.log("The date is " + theDate);
+  if (isNaN(displayDate)){
+    myDate.unix = null;
+    myDate.natural = null;
+    console.log("The date is " + theDate);
+  }
+  else{
+    myDate.unix = theDate.getTime();
+    myDate.natural = toNatDate(theDate);
+    console.log("The date is " + theDate);
+  }
   res.json(myDate);
 });
 
