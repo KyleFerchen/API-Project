@@ -1,6 +1,6 @@
 var express = require("express");
-
 var app = express();
+var port = process.env.PORT || 8080;
 
 function toNatDate(uDate){
   var year = uDate.getFullYear();
@@ -50,7 +50,6 @@ function toNatDate(uDate){
   return month + " " + day + "," + " " + year;
 }
 
-
 app.get('', function(req, res){
   res.sendFile(process.cwd() + '/index.html');
 });
@@ -74,6 +73,6 @@ app.get('/:serveDate', function (req, res) {
   res.json(myDate);
 });
 
-app.listen(8080, function () {
+app.listen(port, function () {
   console.log('Example app listening on port 8080!');
 });
